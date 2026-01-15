@@ -21,7 +21,7 @@ A modern, high-performance Fitness Tracker application built with the MERN stack
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/MERN_Fitness_tracker_app.git
+git clone https://github.com/waqasjafri512/Fitness-tracker.git
 cd MERN_Fitness_tracker_app
 ```
 
