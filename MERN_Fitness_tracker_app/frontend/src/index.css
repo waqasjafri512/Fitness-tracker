@@ -1,0 +1,582 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-soft: #f8fafc;
+  --surface: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --error: #f43f5e;
+  --success: #10b981;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-soft);
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Header & Navbar */
+header {
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Header & Navbar Refinement */
+header .container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 1rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* This pushes logo to left and nav to right */
+}
+
+header a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: var(--transition);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: var(--transition);
+}
+
+header h1:hover {
+  transform: scale(1.02);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Ghost Button Styles for Navbar */
+.login-link,
+.signup-link,
+.logout-btn,
+.auth-links a,
+.auth-links .login-link,
+.auth-links .signup-link {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  padding: 0.6rem 1.25rem;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1.5px solid transparent;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base style for nav buttons to ensure they start "ghost" */
+.auth-links .login-link,
+.auth-links .signup-link button,
+.user-nav .logout-btn {
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  border: 1.5px solid transparent !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease;
+}
+
+/* Hover effects for ALL nav items */
+header .nav-links p {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+header .nav-links a:hover p {
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+header .nav-links a:hover p::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+  animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+/* Premium Hover for ALL Auth Buttons */
+.auth-links .login-link:hover,
+.user-nav .logout-btn:hover {
+  background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%) !important;
+  color: white !important;
+  border-color: transparent !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.25) !important;
+}
+
+header .nav-links {
+  display: flex;
+  gap: 2rem;
+  margin-left: 3.5rem;
+  /* Better breathing room */
+  flex-grow: 1;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+header .nav-links a:hover p {
+  color: var(--primary);
+}
+
+/* Layout */
+.pages {
+  max-width: 1200px;
+  padding: 2rem;
+  margin: 0 auto;
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Homepage */
+.home {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 3rem;
+}
+
+@media (max-width: 900px) {
+  .home {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Workout Detail Cards */
+.workout-details {
+  background: var(--surface);
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.4s ease-out backwards;
+}
+
+.workout-details:hover {
+  transform: rotate(0.5deg) scale(1.01);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary);
+}
+
+.workout-details h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.workout-details p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.workout-details strong {
+  color: var(--text-main);
+}
+
+.workout-details span.material-symbols-outlined {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  cursor: pointer;
+  background: #fee2e2;
+  padding: 8px;
+  border-radius: 10px;
+  color: var(--error);
+  transition: var(--transition);
+  font-size: 1.25rem;
+}
+
+.workout-details span:hover {
+  background: var(--error);
+  background: #e11d48;
+  color: white;
+  transform: scale(1.1) rotate(8deg);
+}
+
+/* Forms */
+/* Global Form Styling */
+form.signup,
+form.login,
+form.create {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 28px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.01);
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 3rem;
+}
+
+form.create {
+  max-width: 100%;
+  /* For the dashboard sidebar */
+  margin-bottom: 2rem;
+}
+
+form.signup,
+form.login {
+  max-width: 450px;
+  margin: 5rem auto;
+}
+
+form h3 {
+  margin: 0 0 2rem 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-align: center;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-left: 0.25rem;
+}
+
+input {
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  border: 2px solid #e2e8f0;
+  /* Darker border for better visibility */
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+  background: #ffffff;
+  color: #1e293b;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+/* Password Field & Toggle Fix */
+.password-field {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.password-field input {
+  padding-right: 3.5rem;
+  /* Space for the eye icon */
+  margin-bottom: 0;
+}
+
+/* Password Field & Toggle Polish */
+.password-field .toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  background: none !important;
+  /* Ensure no background */
+  border: none !important;
+  /* Ensure no border */
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  margin: 0 !important;
+  /* Reset margin to prevent inheritance from form button */
+  box-shadow: none !important;
+  /* Reset shadow */
+  width: auto !important;
+  height: auto !important;
+  min-width: unset !important;
+}
+
+.password-field .toggle-password:hover {
+  color: var(--primary);
+  background: none !important;
+  transform: translateY(-50%) scale(1.1);
+  /* Slightly different hover than main buttons */
+  box-shadow: none !important;
+}
+
+
+.password-field .material-symbols-outlined {
+  font-size: 1.4rem;
+}
+
+/* Global Button Styles */
+form button {
+  background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+  border: 0;
+  color: #fff;
+  padding: 0.8rem 2rem;
+  /* slightly wider for centered look */
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem auto 0;
+  /* Centering the button */
+}
+
+form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px -3px rgba(37, 99, 235, 0.35);
+  filter: brightness(1.05);
+}
+
+form button:disabled {
+  box-shadow: 0 8px 15px -3px rgba(239, 68, 68, 0.25) !important;
+}
+
+/* Profile Trigger & Dropdown Refinement */
+.user-nav {
+  position: relative;
+}
+
+.profile-btn {
+  background: transparent;
+  border: 1.5px solid rgba(0, 0, 0, 0.05);
+  color: var(--text-main);
+  padding: 0.6rem 1.25rem;
+  border-radius: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-btn:hover {
+  background: white;
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.profile-btn .material-symbols-outlined {
+  font-size: 1.4rem;
+}
+
+.profile-btn .arrow {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.profile-btn .arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 240px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+  padding: 1.25rem;
+  z-index: 1000;
+  animation: dropdownIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+}
+
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-info {
+  padding: 0 0.5rem 0.75rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.7rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.15rem;
+}
+
+.value {
+  font-size: 0.85rem;
+  color: #1e293b;
+  font-weight: 700;
+  word-break: break-all;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: rgba(15, 23, 42, 0.06);
+  margin: 0.5rem 0 0.75rem 0;
+}
+
+.profile-dropdown .logout-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: #fff1f2 !important;
+  color: #e11d48 !important;
+  /* Soft red for logout */
+  border: 1px solid #fecdd3 !important;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: none !important;
+}
+
+.profile-dropdown .logout-btn:hover {
+  background: #e11d48 !important;
+  color: white !important;
+  border-color: transparent !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px -3px rgba(225, 29, 72, 0.25) !important;
+}
+
+.profile-dropdown .logout-btn .material-symbols-outlined {
+  font-size: 1.2rem;
+}
+
+div.error {
+  padding: 1rem 1.25rem;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #e11d48;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Links in nav container specifically */
+.container>a {
+  display: flex;
+  align-items: center;
+}
