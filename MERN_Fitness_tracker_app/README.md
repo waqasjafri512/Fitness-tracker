@@ -41,6 +41,21 @@ cd MERN_Fitness_tracker_app
 2. Install dependencies: `npm install`
 3. Start the React app: `npm start`
 
+## 🌐 Deployment to Vercel
+
+### 1. Project Configuration
+This project is configured as a MERN Monorepo for Vercel. Use the following settings during deployment:
+
+- **Build Command**: `cd frontend && npm install && npm run build`
+- **Output Directory**: `frontend/build`
+- **Install Command**: `npm install` (root level)
+
+### 2. Environment Variables
+Add these keys in your Vercel Project Settings:
+- `MONGO_URI`: Your MongoDB Atlas connection string
+- `SECRET`: Your JWT secret key
+- `PORT`: 4000 (standard for this app)
+
 ## 📝 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
