@@ -1,4 +1,4 @@
-const Cardio = require("../models/CardioModel");
+const Cardio = require("../models/cardioModel");
 const mongoose = require("mongoose");
 
 // get all Cardios
